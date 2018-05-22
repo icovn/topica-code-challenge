@@ -34,3 +34,7 @@ type PHPREDIS_SESSION:4f809531b94004b3d70bee057508862f
 GET PHPREDIS_SESSION:4f809531b94004b3d70bee057508862f
 ```
 
+Vào folder icovn-session rồi chạy
+```console
+php -S 0.0.0.0:8000 -t web
+```

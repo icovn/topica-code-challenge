@@ -1,0 +1,13 @@
+{% extends 'layout.twig' %}
+
+{% block content %}
+    <h4 class="form-signin-heading">{{ message }}</h4>
+    <form class="form-signin" role="form"
+          method="post">
+        <input type="text" class="form-control" name="username" placeholder="username"
+               required autofocus></br>
+        <input type="password" class="form-control" name="password" placeholder="password"
+               required>
+        <button class="btn btn-lg btn-primary btn-block" type="submit" name="login">Login</button>
+    </form>
+{% endblock %}
