@@ -27,10 +27,9 @@ class SessionServiceProvider extends \Silex\Provider\SessionServiceProvider
         $client = new \Redis();
         $client->connect('127.0.0.1', 6379);
         $pool = new \Cache\Adapter\Redis\RedisCachePool($client);
-        $prefixedPool = new \Cache\Prefixed\PrefixedCachePool($pool, 'cp-');
 
         //Set handler then start
-        $sessionHandler = new \Cache\SessionHandler\Psr6SessionHandler($prefixedPool, $config);
+        $sessionHandler = new \Cache\SessionHandler\Psr6SessionHandler($pool, $config);
         $app['session.storage.handler'] = $sessionHandler;
     }
 }

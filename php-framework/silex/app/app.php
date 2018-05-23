@@ -48,7 +48,7 @@ $app->post('/login', function (Request $request) use ($app) {
         $app['session']->set('user', array('username' => $username));
         return $app->redirect('/');
     }else{
-        $app['monolog']->info(sprintf("Login nok %s %s %s", $username, $password, $configUsername));
+        $app['monolog']->info(sprintf("Login nok %s %s %s %s", $username, $password, getenv("APP_USERNAME"), $configUsername));
     }
 
     return $app['twig']->render('login.twig', array(
