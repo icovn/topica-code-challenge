@@ -6,11 +6,12 @@ use Symfony\Component\HttpFoundation\Request;
 
 $app = new Silex\Application();
 
-$app->register(new net\friend\DotEnvServiceProvider());
-
-$app->register(new net\friend\SessionServiceProvider(), array(
-    'dotenv.path' => __DIR__ . '/../',
+$app->register(new net\friend\DotEnvServiceProvider(), array(
+    'dotenv.path' => dirname( dirname(__FILE__) ),
 ));
+$app['dotenv'];
+
+$app->register(new net\friend\SessionServiceProvider());
 
 $app->register(new Silex\Provider\MonologServiceProvider(), array(
     'monolog.logfile' => __DIR__ . '/../logs/development.log',
@@ -40,15 +41,12 @@ $app->post('/login', function (Request $request) use ($app) {
     $username = $request->get('username', false);
     $password = $request->get('password');
 
-    $configUsername = getenv("APP_USERNAME") === '' ? getenv("APP_USERNAME") : "topica";
-    $configPassword = getenv("APP_PASSWORD") === '' ? getenv("APP_PASSWORD") : "123";
-
-    if ($configUsername === $username && $configPassword === $password) {
+    if (getenv("APP_USERNAME") === $username && getenv("APP_PASSWORD") === $password) {
         $app['monolog']->info(sprintf("Login ok"));
         $app['session']->set('user', array('username' => $username));
         return $app->redirect('/');
     }else{
-        $app['monolog']->info(sprintf("Login nok %s %s %s %s", $username, $password, getenv("APP_USERNAME"), $configUsername));
+        $app['monolog']->info(sprintf("Login nok %s %s", $username, getenv("APP_USERNAME")));
     }
 
     return $app['twig']->render('login.twig', array(

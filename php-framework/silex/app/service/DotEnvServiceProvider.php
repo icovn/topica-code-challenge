@@ -18,7 +18,7 @@ class DotEnvServiceProvider implements ServiceProviderInterface
     {
         $app['dotenv'] = function ($app) {
             $dotenv = new Dotenv($app['dotenv.path']);
-            return $dotenv->overload();
+            return $dotenv->load();
         };
     }
 }
