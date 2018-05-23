@@ -4,6 +4,7 @@
 ini_set('default_mimetype', 'text/html');
 ini_set('default_charset', 'UTF-8');
 ini_set('date.timezone', 'Asia/Ho_Chi_Minh');
+ini_set('session.cookie_domain', '.icovn.me' );
 ini_set('session.name', 'my-secure-session');
 
 
