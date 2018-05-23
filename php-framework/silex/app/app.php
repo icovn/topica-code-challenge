@@ -42,6 +42,8 @@ $app->post('/login', function (Request $request) use ($app) {
     $password = $request->get('password');
 
     if (getenv("APP_USERNAME") === $username && getenv("APP_PASSWORD") === $password) {
+        session_regenerate_id();
+
         $app['monolog']->info(sprintf("Login ok"));
         $app['session']->set('user', array('username' => $username));
         return $app->redirect('/');
