@@ -1,14 +1,9 @@
-# Code demo
-- php: laravel
-- python: http://flask.pocoo.org/
-- nodejs: 
-- ruby: https://rubyonrails.org/
-
-
 # PHP
 
 ## Yêu cầu 
-PHP 7.2 & composer
+- PHP 7.2 
+- composer
+- Redis
 
 ## Các bước thực hiện
 Cài đặt Redis extension cho PHP 
@@ -34,7 +29,7 @@ type PHPREDIS_SESSION:4f809531b94004b3d70bee057508862f
 GET PHPREDIS_SESSION:4f809531b94004b3d70bee057508862f
 ```
 
-Vào folder icovn-session rồi chạy
+Vào folder php-framework/silex rồi chạy
 ```console
-php -S 0.0.0.0:8000 -t web
+php -S 0.0.0.0:8000 -t app/web
 ```
