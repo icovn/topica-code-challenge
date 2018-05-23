@@ -96,8 +96,8 @@
 
             if (isset($_POST['login']) && !empty($_POST['username']) && !empty($_POST['password'])) {
                if ($_POST['username'] == USERNAME && $_POST['password'] == PASSWORD) {
-                  session_regenerate_id();
-                  
+                  //session_regenerate_id();
+
                   $_SESSION['valid'] = true;
                   $_SESSION['timeout'] = time();
                   $_SESSION['username'] = USERNAME;
