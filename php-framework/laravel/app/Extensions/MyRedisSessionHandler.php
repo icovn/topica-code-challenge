@@ -20,13 +20,13 @@ class MyRedisSessionHandler implements \SessionHandlerInterface
     }
 
     public function read($sessionId) {
-        var_dump($sessionId);
-        die;
+//        var_dump($sessionId);
+//        die;
     }
 
     public function write($sessionId, $data) {
-        var_dump($sessionId);
-        die;
+//        var_dump($sessionId);
+//        die;
     }
 
     public function destroy($sessionId) {

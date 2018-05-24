@@ -17,11 +17,11 @@ class SessionServiceProvider extends \Silex\Provider\SessionServiceProvider
         parent::register($app);
 
         //Config
-        $config = ['ttl'=>3600, 'prefix'=>'icovn-'];
+        $config = ['ttl'=>3600, 'prefix'=>getenv("CACHE_PREFIX")];
 
         //Storage
         $client = new \Redis();
-        $client->connect('127.0.0.1', 6379);
+        $client->connect(getenv("REDIS_HOST"), getenv("REDIS_PORT"));
         $pool = new \Cache\Adapter\Redis\RedisCachePool($client);
 
         //Set handler then start

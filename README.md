@@ -29,7 +29,12 @@ type PHPREDIS_SESSION:4f809531b94004b3d70bee057508862f
 GET PHPREDIS_SESSION:4f809531b94004b3d70bee057508862f
 ```
 
+Vào folder php-framework/laravel rồi chạy
+```console
+php artisan serve --port 8001
+```
+
 Vào folder php-framework/silex rồi chạy
 ```console
-php -S 0.0.0.0:8000 -t app/web
+php -S 0.0.0.0:8002 -t app/web
 ```
