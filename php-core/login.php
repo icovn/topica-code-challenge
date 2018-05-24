@@ -11,7 +11,9 @@
       die();
    }
 
-   if (isset($_SESSION['username']) && !empty($_SESSION['username'])) {
+   if (isset($_SESSION['_sf2_attributes'])
+       && isset($_SESSION['_sf2_attributes']['user']['username'])
+       && !empty($_SESSION['_sf2_attributes']['user']['username'])) {
       redirectToHomePage();
    }
 ?>
