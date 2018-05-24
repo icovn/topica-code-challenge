@@ -33,7 +33,15 @@ class SessionServiceProvider extends \Silex\Provider\SessionServiceProvider
             return $app['session.storage.native'];
         };
 
-        $this::initSessionStorage();
+        //Config
+        $config = ['ttl'=>3600, 'prefix'=>'icovn-'];
+        //Storage
+        $client = new \Redis();
+        $client->connect('127.0.0.1', 6379);
+        $pool = new \Cache\Adapter\Redis\RedisCachePool($client);
+        //Set handler then start
+        $sessionHandler = new \Cache\SessionHandler\Psr6SessionHandler($pool, $config);
+        $app['session.storage.handler'] = $sessionHandler;
 
         $app['session.storage.native'] = function ($app) {
             return new NativeSessionStorage(
@@ -60,19 +68,5 @@ class SessionServiceProvider extends \Silex\Provider\SessionServiceProvider
         $app['session.flash_bag'] = null;
 
         $app['monolog']->info("init redis session done");
-    }
-
-    private function initSessionStorage(){
-        //Config
-        $config = ['ttl'=>3600, 'prefix'=>'icovn-'];
-
-        //Storage
-        $client = new \Redis();
-        $client->connect('127.0.0.1', 6379);
-        $pool = new \Cache\Adapter\Redis\RedisCachePool($client);
-
-        //Set handler then start
-        $sessionHandler = new \Cache\SessionHandler\Psr6SessionHandler($pool, $config);
-        $app['session.storage.handler'] = $sessionHandler;
     }
 }
