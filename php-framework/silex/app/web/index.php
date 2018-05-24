@@ -11,6 +11,8 @@ ini_set('date.timezone', 'Asia/Ho_Chi_Minh');
 ini_set('session.cookie_domain', '.icovn.me' );
 ini_set('session.name', 'my-secure-session');
 
+ini_set('session.save_path', __DIR__ . '/../../logs/');
+
 
 $filename = __DIR__.preg_replace('#(\?.*)$#', '', $_SERVER['REQUEST_URI']);
 if (php_sapi_name() === 'cli-server' && is_file($filename)) {
