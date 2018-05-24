@@ -9,6 +9,11 @@
 namespace net\friend;
 
 use Pimple\Container;
+use Silex\Provider\Session\SessionListener;
+use Silex\Provider\Session\TestSessionListener;
+use Symfony\Component\HttpFoundation\Session\Storage\NativeSessionStorage;
+use Symfony\Component\HttpFoundation\Session\Storage\MockFileSessionStorage;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class SessionServiceProvider extends \Silex\Provider\SessionServiceProvider
 {
