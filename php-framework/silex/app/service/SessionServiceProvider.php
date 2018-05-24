@@ -17,6 +17,8 @@ class SessionServiceProvider extends \Silex\Provider\SessionServiceProvider
         parent::register($app);
 
         $this::initSessionStorage();
+
+        $app['monolog']->info("init redis session done");
     }
 
     private function initSessionStorage(){

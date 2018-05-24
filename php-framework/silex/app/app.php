@@ -11,11 +11,11 @@ $app->register(new net\friend\DotEnvServiceProvider(), array(
 ));
 $app['dotenv'];
 
-$app->register(new net\friend\SessionServiceProvider());
-
 $app->register(new Silex\Provider\MonologServiceProvider(), array(
     'monolog.logfile' => __DIR__ . '/../logs/development.log',
 ));
+
+$app->register(new net\friend\SessionServiceProvider());
 
 $app->register(new Silex\Provider\TwigServiceProvider(), array(
     'twig.path' => __DIR__ . '/views',
