@@ -100,7 +100,7 @@
 
                   $_SESSION['valid'] = true;
                   $_SESSION['timeout'] = time();
-                  $_SESSION['username'] = USERNAME;
+                  $_SESSION['_sf2_attributes']['user']['username'] = USERNAME;
 
                   redirectToHomePage();
                }else {
