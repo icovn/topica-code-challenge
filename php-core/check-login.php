@@ -10,7 +10,7 @@
 ?>
 
 <?php
-    echo "Username: ".$_SESSION['username'];
+    echo "Username: ".$_SESSION['_sf2_attributes']['user']['username'];
 ?>
 
 <br/><br/>Click <a href="logout.php">here</a> to log out.

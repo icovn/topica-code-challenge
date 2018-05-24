@@ -4,8 +4,7 @@
 
 <?php
    session_start();
-   unset($_SESSION["username"]);
-   unset($_SESSION["password"]);
+   unset($_SESSION["_sf2_attributes"]);
 
    echo 'You have cleaned session';
 ?>
