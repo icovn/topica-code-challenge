@@ -3,7 +3,7 @@
 ?>
 
 <?php
-   if (!isset($_SESSION['username']) || empty($_SESSION['username'])) {
+   if (!isset($_SESSION['_sf2_attributes']) || !isset($_SESSION['_sf2_attributes']['user'])) {
       header("Location: /login.php");
       die();
    }

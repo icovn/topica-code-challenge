@@ -12,8 +12,7 @@
    }
 
    if (isset($_SESSION['_sf2_attributes'])
-       && isset($_SESSION['_sf2_attributes']['user']['username'])
-       && !empty($_SESSION['_sf2_attributes']['user']['username'])) {
+       && isset($_SESSION['_sf2_attributes']['user'])) {
       redirectToHomePage();
    }
 ?>
@@ -102,7 +101,9 @@
 
                   $_SESSION['valid'] = true;
                   $_SESSION['timeout'] = time();
-                  $_SESSION['_sf2_attributes']['user']['username'] = USERNAME;
+                  $attribute = [];
+                  $attribute['user'] = array('username' => USERNAME);
+                  $_SESSION['_sf2_attributes'] = $attribute;
 
                   redirectToHomePage();
                }else {
