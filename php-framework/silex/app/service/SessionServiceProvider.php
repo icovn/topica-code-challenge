@@ -17,7 +17,7 @@ class SessionServiceProvider extends \Silex\Provider\SessionServiceProvider
         parent::register($app);
 
         //Config
-        $config = ['ttl'=>3600];
+        $config = ['ttl'=>3600, 'prefix'=>'PHPREDIS_SESSION:'];
 
         //Storage
         $client = new \Redis();
