@@ -1,10 +1,12 @@
-package net.friend;
+package net.friend.controller;
 
 import de.ailis.pherialize.Mixed;
 import de.ailis.pherialize.MixedArray;
 import de.ailis.pherialize.Pherialize;
+import java.security.Principal;
 import javax.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +19,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Slf4j
 public class MainController {
 
+  @Value("${security.oauth2.client.user-logout-uri}")
+  private String userLogoutUri;
+
   @GetMapping({"/", "/home"})
   String index() {
     return "index";
@@ -27,15 +32,11 @@ public class MainController {
     return "hello";
   }
 
-  @GetMapping("/login")
-  String login() {
-    return "login";
-  }
-
-  @RequestMapping("/logout")
-  String logout(HttpSession session) {
+  @RequestMapping("/signOut")
+  String signOut(HttpSession session, Principal user) {
+    log.info("(signOut) {}", user.getName());
     session.invalidate();
-    return "login";
+    return "redirect:" + userLogoutUri;
   }
 
   @PostMapping("/php")
@@ -53,7 +54,7 @@ public class MainController {
 
   @GetMapping("/session")
   @ResponseBody
-  String session(HttpSession session) {
-    return session.getId();
+  String session(HttpSession session, Principal user) {
+    return session.getId() + " | " + user.getName();
   }
 }
