@@ -24,10 +24,12 @@
   "scripts": {
     "test": "npm run eslint && npm run mocha",
     "eslint": "eslint src/. test/. --config .eslintrc.json",
+    "dev": "nodemon src/",
+    "dev_linux": "./node_modules/nodemon/bin/nodemon.js src/",
     "start": "node src/",
     "clean": "shx rm -rf test/data/",
-//    "mocha": "npm run clean && NODE_ENV=test mocha test/ --recursive --exit"
-    "mocha": "npm run clean & SET NODE_ENV=test& mocha test/ --recursive --exit"
+    "mocha": "npm run clean & SET NODE_ENV=test& mocha test/ --recursive --exit",
+    "mocha_linux": "npm run clean & NODE_ENV=test& mocha test/ --recursive --exit"
   },
   "dependencies": {
     "@feathersjs/authentication": "^2.1.5",
@@ -54,6 +56,7 @@
     "eslint": "^4.19.1",
     "feathers-memory": "^2.1.1",
     "mocha": "^5.2.0",
+    "nodemon": "^1.17.5",
     "request": "^2.87.0",
     "request-promise": "^4.2.2",
     "shx": "^0.2.2"

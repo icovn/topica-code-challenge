@@ -23,6 +23,12 @@ Getting up and running is as easy as 1, 2, 3.
     npm start
     ```
 
+4. Start app with dev
+
+    ```
+    npm run dev
+    ```
+    
 ## Testing
 
 Simply run `npm test` and all your tests in the `test/` directory will be run.
