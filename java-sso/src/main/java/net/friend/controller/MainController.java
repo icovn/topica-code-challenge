@@ -1,9 +1,6 @@
 package net.friend.controller;
 
 import java.io.IOException;
-import java.security.Principal;
-import java.util.LinkedHashMap;
-import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
@@ -12,7 +9,6 @@ import org.springframework.security.web.authentication.logout.SecurityContextLog
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @Slf4j
@@ -34,20 +30,5 @@ public class MainController {
     } catch (IOException ex) {
       log.error(ExceptionUtil.getStackTrace(ex));
     }
-  }
-
-  @RequestMapping({ "/user", "/me" })
-  @ResponseBody
-  public Map<String, String> user(Principal principal) {
-    log.info("(user) {}", principal);
-    Map<String, String> map = new LinkedHashMap<>();
-    try{
-      map.put("name", principal.getName());
-    }catch (Exception ex){
-      ex.printStackTrace();
-      log.error(ExceptionUtil.getStackTrace(ex));
-    }
-
-    return map;
   }
 }

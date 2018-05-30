@@ -8,14 +8,15 @@ app.default:
 
 logging:
   level:
-    org.springframework.security: DEBUG
-    org.springframework.web: DEBUG
+    org.springframework.security: INFO
+    org.springframework.web: INFO
 
 security.basic.enabled: false
 
 server:
   address: 127.0.0.1
   port: 8000
+  context-path: /auth
   use-forward-headers: true
   tomcat:
     accesslog:

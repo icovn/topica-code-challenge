@@ -7,13 +7,11 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
-import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 
 @Configuration
 @EnableAuthorizationServer
-@EnableResourceServer
 public class AuthorizationServerConfiguration extends AuthorizationServerConfigurerAdapter {
 
   @Autowired
@@ -25,19 +23,13 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
   @Override
   public void configure(AuthorizationServerSecurityConfigurer oauthServer){
     oauthServer.tokenKeyAccess("permitAll()")
-        .checkTokenAccess("isAuthenticated()");
+        .checkTokenAccess("isAuthenticated()")
+        .allowFormAuthenticationForClients();
   }
 
   @Override
   public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-//    clients.withClientDetails(myClientDetailsService);
-
-    clients.inMemory()
-        .withClient("acme")
-        .secret("acmesecret")
-        .authorizedGrantTypes("authorization_code")
-        .scopes("read,write")
-        .autoApprove(true) ;
+    clients.withClientDetails(myClientDetailsService);
   }
 
   @Override
