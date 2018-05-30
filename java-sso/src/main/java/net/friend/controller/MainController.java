@@ -11,13 +11,18 @@ import net.friend.util.ExceptionUtil;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @Slf4j
 public class MainController {
+
+  @GetMapping("/login")
+  String login() {
+    log.info("(login)");
+    return "login";
+  }
 
   @RequestMapping("/oauth/exit")
   public void exit(HttpServletRequest request, HttpServletResponse response) {
@@ -34,6 +39,7 @@ public class MainController {
   @RequestMapping({ "/user", "/me" })
   @ResponseBody
   public Map<String, String> user(Principal principal) {
+    log.info("(user) {}", principal);
     Map<String, String> map = new LinkedHashMap<>();
     try{
       map.put("name", principal.getName());

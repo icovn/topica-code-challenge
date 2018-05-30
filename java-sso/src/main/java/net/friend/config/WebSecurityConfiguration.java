@@ -8,13 +8,16 @@ import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
+import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
+import org.springframework.web.filter.CompositeFilter;
 
 @Configuration
-@EnableWebSecurity
 @Order(200)
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
@@ -23,21 +26,37 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
   @Override
   protected void configure(HttpSecurity httpSecurity) throws Exception {
-    httpSecurity.authorizeRequests()
-        .antMatchers("/", "/h2**", "/h2/**", "/login**", "/login/**", "/oauth/authorize").permitAll()
-        .antMatchers("/admin").hasRole("ADMIN")
-        .anyRequest().authenticated()
-        .and().formLogin().permitAll()
-        .and().csrf().disable();
-    ;
+//    httpSecurity
+//        .authorizeRequests()
+//          .antMatchers("/", "/h2**", "/h2/**", "/login", "/oauth/authorize").permitAll()
+//          .antMatchers("/admin").hasRole("ADMIN")
+//          .anyRequest().authenticated()
+//          .and()
+//        .formLogin()
+//          .loginPage("/login")
+//          .and()
+//        .logout().and().csrf().disable();
 
-    //TODO: disable later
-    httpSecurity.csrf().disable();
-    httpSecurity.headers().frameOptions().disable();
+    httpSecurity
+          .antMatcher("/**").authorizeRequests()
+          .antMatchers("/", "/h2**", "/h2/**", "/login", "/oauth/authorize").permitAll()
+          .antMatchers("/admin").hasRole("ADMIN")
+          .anyRequest().authenticated()
+          .and()
+        .formLogin()
+          .loginPage("/login")
+          .and()
+        .logout()
+          .logoutSuccessUrl("/").permitAll()
+          .and()
+        .csrf()
+          .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+          .and()
+        .addFilterBefore(new CompositeFilter(), BasicAuthenticationFilter.class);
   }
 
   @Override
-  protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+  protected void configure(AuthenticationManagerBuilder auth) {
     auth.authenticationProvider(authenticationProvider());
   }
 
