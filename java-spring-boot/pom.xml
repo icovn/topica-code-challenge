@@ -80,6 +80,69 @@
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <phase>none</phase>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>appassembler-maven-plugin</artifactId>
+        <version>1.10</version>
+        <executions>
+          <execution>
+            <id>generate-jsw-scripts</id>
+            <phase>package</phase>
+            <goals>
+              <goal>generate-daemons</goal>
+            </goals>
+            <configuration>
+              <repositoryLayout>flat</repositoryLayout>
+              <target>${project.build.directory}</target>
+              <daemons>
+                <daemon>
+                  <id>app</id>
+                  <mainClass>net.friend.Application
+                  </mainClass>
+                  <commandLineArguments>
+                    <commandLineArgument>start</commandLineArgument>
+                  </commandLineArguments>
+                  <platforms>
+                    <platform>jsw</platform>
+                  </platforms>
+                  <generatorConfigurations>
+                    <generatorConfiguration>
+                      <generator>jsw</generator>
+                      <includes>
+                        <include>linux-x86-64</include>
+                      </includes>
+                      <configuration>
+                        <property>
+                          <name>wrapper.logfile</name>
+                          <value>logs/wrapper-YYYYMMDD.log</value>
+                        </property>
+                        <property>
+                          <name>wrapper.logfile.rollmode</name>
+                          <value>DATE</value>
+                        </property>
+                      </configuration>
+                    </generatorConfiguration>
+                  </generatorConfigurations>
+                  <jvmSettings>
+                    <initialMemorySize>128M</initialMemorySize>
+                    <maxMemorySize>256M</maxMemorySize>
+                    <systemProperties>
+                    </systemProperties>
+                    <extraArguments>
+                    </extraArguments>
+                  </jvmSettings>
+                </daemon>
+              </daemons>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>
