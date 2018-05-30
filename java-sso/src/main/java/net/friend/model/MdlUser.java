@@ -16,7 +16,7 @@ import net.friend.util.CollectionUtil;
 @NoArgsConstructor
 @Setter
 @Table(name="mdl_user")
-@ToString
+@ToString(exclude = "password")
 public class MdlUser implements User {
 
   @Id

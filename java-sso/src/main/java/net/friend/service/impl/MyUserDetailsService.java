@@ -26,11 +26,15 @@ public class MyUserDetailsService implements UserDetailsService {
     log.info("(loadUserByUsername) {}, {}", username, user);
 
     if (user == null) {
-      throw new UsernameNotFoundException(String.format("The username %s doesn't exist", username));
+      String errorMessage = String.format("The username %s doesn't exist", username);
+      log.info(errorMessage);
+      throw new UsernameNotFoundException(errorMessage);
     }
 
-    if (user.isActive()) {
-      throw new UsernameNotFoundException(String.format("The user has %s is not active", username));
+    if (!user.isActive()) {
+      String errorMessage = String.format("The user has %s is not active", username);
+      log.info(errorMessage);
+      throw new UsernameNotFoundException(errorMessage);
     }
 
     List<GrantedAuthority> authorities = new ArrayList<>();
