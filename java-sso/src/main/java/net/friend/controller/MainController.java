@@ -19,17 +19,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Slf4j
 public class MainController {
 
-  @GetMapping("/login/icovn")
-  String signInShow() {
-    log.info("(signInShow)");
-    return "signIn";
-  }
-
-  @PostMapping("/login/icovn")
-  void signIn(){
-    log.info("(signIn)");
-  }
-
   @RequestMapping("/oauth/exit")
   public void exit(HttpServletRequest request, HttpServletResponse response) {
     // token can be revoked here if needed

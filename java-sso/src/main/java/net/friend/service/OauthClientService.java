@@ -8,5 +8,7 @@ public interface OauthClientService {
 
   void deleteByClientId(String clientId);
 
+  long count();
+
   MyClientDetails findByClientId(String clientId);
 }

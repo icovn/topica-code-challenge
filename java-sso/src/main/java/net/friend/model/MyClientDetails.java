@@ -2,6 +2,8 @@ package net.friend.model;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentLinkedQueue;
@@ -10,14 +12,18 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+import net.friend.util.CollectionUtil;
 import net.friend.util.JsonUtil;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.oauth2.provider.ClientDetails;
 
-@Data
 @Entity
 @NoArgsConstructor
+@Setter
 @Table(name = "oauth_clients")
+@ToString
 public class MyClientDetails implements ClientDetails {
 
   @Id
@@ -27,9 +33,9 @@ public class MyClientDetails implements ClientDetails {
 
   private String resourceIds;
 
-  private boolean isSecretRequired;
+  private Boolean isSecretRequired;
 
-  private boolean isScoped;
+  private Boolean isScoped;
 
   private String scope;
 
@@ -43,7 +49,7 @@ public class MyClientDetails implements ClientDetails {
 
   private Integer refreshTokenValiditySeconds;
 
-  private boolean isAutoApprove;
+  private Boolean isAutoApprove;
 
   private String additionalInformation;
 
@@ -54,11 +60,19 @@ public class MyClientDetails implements ClientDetails {
 
   @Override
   public Set<String> getResourceIds() {
-    return JsonUtil.toSet(resourceIds);
+    if(resourceIds == null){
+      return new HashSet<>();
+    }
+
+    return CollectionUtil.toSet(resourceIds.split(","));
   }
 
   @Override
   public boolean isSecretRequired() {
+    if(isSecretRequired == null){
+      return false;
+    }
+
     return isSecretRequired;
   }
 
@@ -69,28 +83,49 @@ public class MyClientDetails implements ClientDetails {
 
   @Override
   public boolean isScoped() {
+    if(isScoped == null){
+      return false;
+    }
+
     return isScoped;
   }
 
   @Override
   public Set<String> getScope() {
-    return JsonUtil.toSet(scope);
+    if(scope == null){
+      return new HashSet<>();
+    }
+
+    return CollectionUtil.toSet(scope.split(","));
   }
 
   @Override
   public Set<String> getAuthorizedGrantTypes() {
-    return JsonUtil.toSet(authorizedGrantTypes);
+    if(authorizedGrantTypes == null){
+      return new HashSet<>();
+    }
+
+    return CollectionUtil.toSet(authorizedGrantTypes.split(","));
   }
 
   @Override
   public Set<String> getRegisteredRedirectUri() {
-    return JsonUtil.toSet(registeredRedirectUri);
+    if(registeredRedirectUri == null){
+      return new HashSet<>();
+    }
+
+    return CollectionUtil.toSet(registeredRedirectUri.split(","));
   }
 
   @Override
   public Collection<GrantedAuthority> getAuthorities() {
     Collection<GrantedAuthority> grantedAuthorities = new ArrayList<>();
-    Set<String> setOfAuthorities = JsonUtil.toSet(authorities);
+
+    if(authorities == null){
+      return grantedAuthorities;
+    }
+
+    Set<String> setOfAuthorities = CollectionUtil.toSet(authorities.split(","));
     for(String authority: setOfAuthorities){
       grantedAuthorities.add(new MyGrantedAuthority(authority));
     }
@@ -100,21 +135,37 @@ public class MyClientDetails implements ClientDetails {
 
   @Override
   public Integer getAccessTokenValiditySeconds() {
+    if(accessTokenValiditySeconds == null){
+      return 86400; //1 day
+    }
+
     return accessTokenValiditySeconds;
   }
 
   @Override
   public Integer getRefreshTokenValiditySeconds() {
+    if(refreshTokenValiditySeconds == null){
+      return 604800; //1 week
+    }
+
     return refreshTokenValiditySeconds;
   }
 
   @Override
   public boolean isAutoApprove(String scope) {
+    if(isAutoApprove == null){
+      return true;
+    }
+
     return isAutoApprove;
   }
 
   @Override
   public Map<String, Object> getAdditionalInformation() {
+    if(additionalInformation == null){
+      return new HashMap<>();
+    }
+
     return JsonUtil.convert(additionalInformation);
   }
 }

@@ -1,6 +1,6 @@
 package net.friend.config;
 
-import net.friend.service.impl.MyClientDetailsService;
+import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -18,7 +18,7 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
   private AuthenticationManager authenticationManager;
 
   @Autowired
-  private MyClientDetailsService myClientDetailsService;
+  private DataSource dataSource;
 
   @Override
   public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
@@ -27,12 +27,11 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 
   @Override
   public void configure(AuthorizationServerSecurityConfigurer oauthServer) throws Exception {
-    oauthServer.tokenKeyAccess("permitAll()")
-        .checkTokenAccess("isAuthenticated()");
+    oauthServer.tokenKeyAccess("permitAll()").checkTokenAccess("isAuthenticated()");
   }
 
   @Override
   public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-    clients.withClientDetails(myClientDetailsService);
+    clients.jdbc(dataSource);
   }
 }

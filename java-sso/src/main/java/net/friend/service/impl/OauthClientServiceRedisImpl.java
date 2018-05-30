@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 @Profile("redis")
 @Service
-public class RedisOauthClientServiceImpl implements OauthClientService {
+public class OauthClientServiceRedisImpl implements OauthClientService {
 
   @Override
   public void save(MyClientDetails myClientDetails) {
@@ -17,6 +17,11 @@ public class RedisOauthClientServiceImpl implements OauthClientService {
   @Override
   public void deleteByClientId(String clientId) {
 
+  }
+
+  @Override
+  public long count() {
+    return 0;
   }
 
   @Override

@@ -19,26 +19,6 @@ public class JsonUtil {
     }
   }
 
-  public static Collection toCollection(String json) {
-    ObjectMapper mapper = new ObjectMapper();
-    try {
-      return mapper.readValue(json, new TypeReference<Map<String, String>>() {
-      });
-    } catch (IOException ex) {
-      return null;
-    }
-  }
-  public static Set toSet(String json) {
-    ObjectMapper mapper = new ObjectMapper();
-    try {
-      return mapper.readValue(json, new TypeReference<Map<String, String>>() {
-      });
-    } catch (IOException ex) {
-      return null;
-    }
-  }
-
-
   public static String convertToJson(Object object) {
     ObjectMapper mapper = new ObjectMapper();
     try {
