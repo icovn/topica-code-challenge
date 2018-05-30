@@ -23,6 +23,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
   @Override
   protected void configure(HttpSecurity httpSecurity) throws Exception {
+    //IMPORTANT: change this could make application not working (loop redirect at RESOURCE APP)
     httpSecurity.requestMatchers()
         .antMatchers("/", "/h2**", "/h2/**", "/login", "/oauth/authorize", "/oauth/exit")
           .and()
