@@ -1,0 +1,39 @@
+app.sso.service: http://localhost:8000
+
+logging:
+  level:
+    org.springframework.security: DEBUG
+    org.springframework.web: DEBUG
+
+security:
+  oauth2:
+    client:
+      client-id: acme
+      client-secret: acmesecret
+      access-token-uri: ${app.sso.service}/oauth/token
+      user-authorization-uri: ${app.sso.service}/oauth/authorize
+      user-logout-uri: ${app.sso.service}/oauth/exit
+    resource:
+      user-info-uri: ${app.sso.service}/me
+
+server:
+  address: 127.0.0.1
+  port: 8003
+  servlet.session.timeout: 1800s
+  use-forward-headers: true
+  tomcat:
+    accesslog:
+      directory: logs
+      enabled: true
+      file-date-format: .yyyy-MM-dd
+      pattern: common
+      prefix: tomcat_access_log
+      rename-on-rotate: false
+      rotate: true
+      max-http-post-size: 0
+      server.tomcat.uri-encoding: UTF-8
+
+spring.redis:
+  host: 127.0.0.1
+  password:
+  port: 6379
