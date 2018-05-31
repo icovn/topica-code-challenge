@@ -35,4 +35,18 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
+    'github' => [
+        'client_id' => env('GITHUB_CLIENT_ID'),         // Your GitHub Client ID
+        'client_secret' => env('GITHUB_CLIENT_SECRET'), // Your GitHub Client Secret
+        'redirect' => env('GITHUB_CALLBACK_URL'),
+    ],
+
+    'icovn' => [
+        'client_id' => env('ICOVN_CLIENT_ID'),
+        'client_secret' => env('ICOVN_CLIENT_SECRET'),
+        'access_token_url' => env('ICOVN_ACCESS_TOKEN_URL'),
+        'user_authorization_url' => env('ICOVN_USER_AUTHORIZATION_URL'),
+        'user_logout_url' => env('ICOVN_USER_LOGOUT_URL'),
+        'user_info_url' => env('ICOVN_USER_INFO_URL'),
+    ],
 ];
