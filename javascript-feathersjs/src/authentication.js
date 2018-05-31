@@ -5,6 +5,7 @@ const oauth2 = require('@feathersjs/authentication-oauth2');
 const Auth0Strategy = require('passport-auth0');
 const GoogleStrategy = require('passport-google-oauth20');
 const GithubStrategy = require('passport-github');
+const OAuth2Strategy = require('passport-oauth').OAuth2Strategy;
 
 module.exports = function (app) {
   const config = app.get('authentication');
@@ -28,6 +29,11 @@ module.exports = function (app) {
     name: 'github',
     Strategy: GithubStrategy
   }, config.github)));
+
+  app.configure(oauth2(Object.assign({
+    name: 'icovn',
+    Strategy: OAuth2Strategy
+  }, config.icovn)));
 
   // The `authentication` service is used to create a JWT.
   // The before `create` hook registers strategies that can be used

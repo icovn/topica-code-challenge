@@ -3,6 +3,7 @@
 
 // We need this to create the MD5 hash
 const crypto = require('crypto');
+const logger = require('winston');
 
 // The Gravatar image service
 const gravatarUrl = 'https://s.gravatar.com/avatar';
@@ -12,6 +13,8 @@ const query = 's=60';
 // eslint-disable-next-line no-unused-vars
 module.exports = function (options = {}) {
   return async context => {
+    logger.info('context %s', JSON.stringify(context));
+
     // The user email
     const { email } = context.data;
     // Gravatar uses MD5 hashes from an email address to get the image

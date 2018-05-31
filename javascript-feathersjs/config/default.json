@@ -11,7 +11,9 @@
     "secret": "8f7df8e2bcda520fcda7ab6d9800a9d446a5575299d820c46bc3de006f1ea2ec659c968670b31172890c9314f0765119a3951f7e856085f0d3a6a0046385283f6d30f0bf4dc573d309a34e5475f4c4a844a3ded21afaa3df3de514edc49ef9da3884577fd5d621ba70c2db96450c397857095ea7e8b131406b283c0442b24d51a49e1a4d8498c3406f5f7abf3345b12cfec2e8ec809044f96738cb74f478102c42693b4e81b1ba46e8fcfc5b74bff7c1f78a5a48234375f130aa5691d310a5c9d40cd5f6a1382242ba69f2a4661ea65e183bb01d16b4d742e257e7a1a431b2686f574e65c6fc3cfc7ba8278e169d3ef92a46af4469fefd9b778eec2953c499c9",
     "strategies": [
       "jwt",
-      "local"
+      "local",
+      "facebook",
+      "icovn"
     ],
     "path": "/authentication",
     "service": "users",
@@ -47,6 +49,13 @@
     "github": {
       "clientID": "your github client id",
       "clientSecret": "your github client secret",
+      "successRedirect": "/"
+    },
+    "icovn": {
+      "clientID": "acme",
+      "clientSecret": "acmesecret",
+      "authorizationURL": "http://sso.icovn.me/oauth/authorize",
+      "tokenURL": "http://sso.icovn.me/oauth/token",
       "successRedirect": "/"
     },
     "cookie": {

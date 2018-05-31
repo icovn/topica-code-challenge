@@ -36,6 +36,12 @@ const loginHTML = `<main class="login container">
           Sign up and log in
         </button>
       </form>
+      <p class="center-text"><br/>
+        <a href="/auth/icovn">Login With icovn.me</a>
+      </p>
+      <p class="center-text"><br/>
+        <a href="/auth/google">Login With Google</a>
+      </p>
     </div>
   </div>
 </main>`;
