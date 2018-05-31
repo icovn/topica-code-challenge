@@ -161,6 +161,7 @@ return [
         App\Providers\MyCacheServiceProvider::class,
         App\Providers\MySessionServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        \SocialiteProviders\Manager\ServiceProvider::class,
     ],
 
     /*
