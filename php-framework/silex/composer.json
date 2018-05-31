@@ -1,0 +1,24 @@
+{
+    "name": "icovn/icovn-silex",
+    "description": "PHP custom session handler",
+    "require": {
+        "silex/silex": "^2.3",
+
+        "monolog/monolog": "^1.23",
+        "vlucas/phpdotenv": "^2.4",
+
+        "cache/session-handler": "^1.0",
+        "cache/redis-adapter": "^1.0",
+        "twig/twig": "^2.4"
+    },
+    "authors": [
+        {
+            "name": "icovn",
+            "email": "quanghuy.ico@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": { "net\\friend\\": "app/service"
+        }
+    }
+}
