@@ -1,0 +1,67 @@
+{
+  "name": "javascript-feathersjs",
+  "description": "",
+  "version": "0.0.0",
+  "homepage": "",
+  "main": "src",
+  "keywords": [
+    "feathers"
+  ],
+  "author": {
+    "name": "huynq12",
+    "email": "huynq12@topica.edu.vn"
+  },
+  "contributors": [],
+  "bugs": {},
+  "directories": {
+    "lib": "src",
+    "test": "test/"
+  },
+  "engines": {
+    "node": "^8.0.0",
+    "npm": ">= 3.0.0"
+  },
+  "scripts": {
+    "test": "npm run eslint && npm run mocha",
+    "eslint": "eslint src/. test/. --config .eslintrc.json",
+    "dev": "nodemon src/",
+    "dev_linux": "./node_modules/nodemon/bin/nodemon.js src/",
+    "start": "node src/",
+    "clean": "shx rm -rf test/data/",
+    "mocha": "npm run clean & SET NODE_ENV=test& mocha test/ --recursive --exit",
+    "mocha_linux": "npm run clean & NODE_ENV=test& mocha test/ --recursive --exit"
+  },
+  "dependencies": {
+    "@feathersjs/authentication": "^2.1.5",
+    "@feathersjs/authentication-jwt": "^2.0.1",
+    "@feathersjs/authentication-local": "^1.2.1",
+    "@feathersjs/authentication-oauth2": "^1.0.3",
+    "@feathersjs/configuration": "^1.0.2",
+    "@feathersjs/errors": "^3.3.0",
+    "@feathersjs/express": "^1.2.2",
+    "@feathersjs/feathers": "^3.1.5",
+    "@feathersjs/socketio": "^3.2.1",
+    "axios": "^0.18.0",
+    "compression": "^1.7.2",
+    "cors": "^2.8.4",
+    "feathers-nedb": "^3.0.0",
+    "helmet": "^3.12.1",
+    "json-stringify-safe": "^5.0.1",
+    "nedb": "^1.8.0",
+    "passport-auth0": "^0.6.1",
+    "passport-github": "^1.1.0",
+    "passport-google-oauth20": "^1.0.0",
+    "passport-oauth": "^1.0.0",
+    "serve-favicon": "^2.5.0",
+    "winston": "^2.4.2"
+  },
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "feathers-memory": "^2.1.1",
+    "mocha": "^5.2.0",
+    "nodemon": "^1.17.5",
+    "request": "^2.87.0",
+    "request-promise": "^4.2.2",
+    "shx": "^0.2.2"
+  }
+}
