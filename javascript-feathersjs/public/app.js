@@ -37,10 +37,10 @@ const loginHTML = `<main class="login container">
         </button>
       </form>
       <p class="center-text"><br/>
-        <a href="/auth/icovn">Login With icovn.me</a>
+        <a href="/auth/icovn">Login With Icovn</a>
       </p>
       <p class="center-text"><br/>
-        <a href="/auth/google">Login With Google</a>
+        <a href="/auth/github">Login With Github</a>
       </p>
     </div>
   </div>

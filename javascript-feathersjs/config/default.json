@@ -1,6 +1,6 @@
 {
   "host": "localhost",
-  "port": 3030,
+  "port": 8002,
   "public": "../public/",
   "paginate": {
     "default": 10,
@@ -47,8 +47,8 @@
       ]
     },
     "github": {
-      "clientID": "your github client id",
-      "clientSecret": "your github client secret",
+      "clientID": "y882088c705e9d27d6bf2",
+      "clientSecret": "dfe33c00f4d4ba078f70761462e3011a788e4650",
       "successRedirect": "/"
     },
     "icovn": {
@@ -56,7 +56,8 @@
       "clientSecret": "acmesecret",
       "authorizationURL": "http://sso.icovn.me/oauth/authorize",
       "tokenURL": "http://sso.icovn.me/oauth/token",
-      "successRedirect": "/"
+      "callbackURL": "http://sso-nodejs.icovn.me/auth/icovn/callback",
+      "successRedirect": "http://sso-nodejs.icovn.me/"
     },
     "cookie": {
       "enabled": true,
