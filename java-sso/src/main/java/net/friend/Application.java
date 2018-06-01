@@ -48,7 +48,7 @@ public class Application implements CommandLineRunner {
       MyClientDetails clientDetails = new MyClientDetails();
       clientDetails.setClientId(defaultClientId);
       clientDetails.setClientSecret(defaultClientSecret);
-      clientDetails.setScope("read,write");
+      clientDetails.setScope("read,write,profile,email");
       clientDetails.setAuthorizedGrantTypes("authorization_code");
       clientDetails.setIsAutoApprove(true);
       log.info("(initClient) {}", clientDetails);

@@ -3,7 +3,7 @@ app.default:
     id: acme
     secret: acmesecret
   user:
-    username: admin
+    username: admin-it@topica.edu.vn
     password: topica@13579
 
 logging:

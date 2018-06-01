@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.redis.serializer.StringRedisSerializer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 
 @Configuration
@@ -19,6 +20,11 @@ public class ModuleConfiguration {
   @ConditionalOnMissingBean
   public OauthClientService oauthClientService() {
     return new OauthClientServiceJdbcImpl();
+  }
+
+  @Bean
+  public StringRedisSerializer stringRedisSerializer() {
+    return new StringRedisSerializer();
   }
 
   @Bean
