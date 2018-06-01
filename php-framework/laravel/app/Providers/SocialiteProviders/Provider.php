@@ -32,9 +32,8 @@ class Provider extends AbstractProvider implements ProviderInterface
      * @var array
      */
     protected $scopes = [
-        'openid',
-        'profile',
-        'email',
+        'read',
+        'write',
     ];
 
     /**
@@ -47,7 +46,7 @@ class Provider extends AbstractProvider implements ProviderInterface
     protected function getAuthUrl($state)
     {
         return $this->buildAuthUrlFromBase(
-            'https://access.line.me/oauth2/v2.1/authorize', $state
+            $this->getConfig('user_authorization_url', 'http://sso.icovn.me/oauth/authorize'), $state
         );
     }
 
@@ -58,7 +57,7 @@ class Provider extends AbstractProvider implements ProviderInterface
      */
     protected function getTokenUrl()
     {
-        return 'https://api.line.me/oauth2/v2.1/token';
+        return $this->getConfig('access_token_url', 'http://sso.icovn.me/oauth/token');
     }
 
     /**
@@ -71,7 +70,7 @@ class Provider extends AbstractProvider implements ProviderInterface
     protected function getUserByToken($token)
     {
         $response = $this->getHttpClient()->get(
-            'https://api.line.me/v2/profile', [
+            $this->getConfig('user_info_url', 'http://sso.icovn.me/user/me'), [
             'headers' => [
                 'Authorization' => 'Bearer '.$token,
             ],
@@ -89,11 +88,7 @@ class Provider extends AbstractProvider implements ProviderInterface
     protected function mapUserToObject(array $user)
     {
         return (new User())->setRaw($user)->map([
-            'id'       => $user['userId'] ?? $user['sub'] ?? null,
-            'nickname' => null,
-            'name'     => $user['displayName'] ?? $user['name'] ?? null,
-            'avatar'   => $user['pictureUrl'] ?? $user['picture'] ?? null,
-            'email'    => $user['email'] ?? null,
+            'email'    => $user['name'] ?? null,
         ]);
     }
 

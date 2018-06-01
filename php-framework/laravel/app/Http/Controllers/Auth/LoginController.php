@@ -81,7 +81,12 @@ class LoginController extends Controller
      */
     public function redirectToIcovnProvider()
     {
+        $clientId = env('ICOVN_CLIENT_ID', 'acme');
+        $clientSecret = env('ICOVN_CLIENT_SECRET', 'acmesecret');
+        $redirectUrl = env('ICOVN_CALLBACK_URL', 'http://localhost:8000/login/icovn/callback');
+        $config = new \SocialiteProviders\Manager\Config($clientId, $clientSecret, $redirectUrl);
         return Socialite::driver('icovn')
+            ->setConfig($config)
             ->scopes(['read', 'write'])
             ->redirect();
     }

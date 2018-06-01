@@ -85,6 +85,7 @@
                 <div class="links">
                     <a href="/home">Home</a>
                     <a href="/login/github">Login with Github</a>
+                    <a href="/login/icovn">Login with Icovn</a>
                 </div>
             </div>
         </div>

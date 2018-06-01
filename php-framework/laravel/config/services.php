@@ -42,11 +42,12 @@ return [
     ],
 
     'icovn' => [
-        'client_id' => env('ICOVN_CLIENT_ID'),
-        'client_secret' => env('ICOVN_CLIENT_SECRET'),
-        'access_token_url' => env('ICOVN_ACCESS_TOKEN_URL'),
-        'user_authorization_url' => env('ICOVN_USER_AUTHORIZATION_URL'),
-        'user_logout_url' => env('ICOVN_USER_LOGOUT_URL'),
-        'user_info_url' => env('ICOVN_USER_INFO_URL'),
+        'client_id' => env('ICOVN_CLIENT_ID', 'acme'),
+        'client_secret' => env('ICOVN_CLIENT_SECRET', 'acmesecret'),
+        'redirect' => env('ICOVN_CALLBACK_URL', 'http://localhost:8000/login/icovn/callback'),
+        'access_token_url' => env('ICOVN_ACCESS_TOKEN_URL', 'http://sso.icovn.me/oauth/token'),
+        'user_authorization_url' => env('ICOVN_USER_AUTHORIZATION_URL', 'http://sso.icovn.me/oauth/authorize'),
+        'user_logout_url' => env('ICOVN_USER_LOGOUT_URL', 'http://sso.icovn.me/oauth/exit'),
+        'user_info_url' => env('ICOVN_USER_INFO_URL', 'http://sso.icovn.me/user/me'),
     ],
 ];
