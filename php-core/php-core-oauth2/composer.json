@@ -1,0 +1,12 @@
+{
+    "name": "icovn/sso-php-core",
+    "authors": [
+        {
+            "name": "icovn",
+            "email": "quanghuy.ico@gmail.com"
+        }
+    ],
+    "require": {
+        "league/oauth2-client": "^2.3"
+    }
+}
