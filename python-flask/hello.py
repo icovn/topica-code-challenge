@@ -3,7 +3,8 @@ from RedisOperator import RedisOperator
 from RedisSession import RedisSessionInterface
 
 app = Flask(__name__)
-app.config['SESSION_COOKIE_NAME'] = "icovn-session-id"
+app.config['SESSION_COOKIE_DOMAIN'] = ".icovn.me"
+app.config['SESSION_COOKIE_NAME'] = "my-secure-session"
 app.session_interface = RedisSessionInterface()
 
 redisOperator = RedisOperator()
@@ -18,9 +19,11 @@ def hello():
 @app.route('/')
 def index():
     if 'username' in session:
-    	myUsername = redisOperator.get('loggedIn:' + str(session.sid))
-    	
-        return 'Logged in as %s %s' % (escape(session['username']), myUsername)
+        return 'Logged in as %s' % escape(session['username'])
+    else:
+        myUsername = redisOperator.get('loggedIn:' + str(session.sid))
+        if myUsername is not None: 
+            return 'Logged in as %s' % escape(myUsername)
     return 'You are not logged in'
 
 @app.route('/login', methods=['GET', 'POST'])

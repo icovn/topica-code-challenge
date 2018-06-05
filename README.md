@@ -22,12 +22,12 @@ Cài đặt Redis extension cho PHP
 sudo apt-get install php-redis
 ```
 
-Vào folder web1 rồi chạy
+Vào folder php-core/web1 rồi chạy
 ```console
 php -S localhost:8001 
 ```
 
-Vào folder web2 rồi chạy
+Vào folder php-core/web2 rồi chạy
 ```console
 php -S localhost:8002
 ```
@@ -40,14 +40,9 @@ type PHPREDIS_SESSION:4f809531b94004b3d70bee057508862f
 GET PHPREDIS_SESSION:4f809531b94004b3d70bee057508862f
 ```
 
-Vào folder php-framework/laravel rồi chạy
+Vào folder php-core/php-core-oauth2 rồi chạy
 ```console
-php artisan serve --port 8001
-```
-
-Vào folder php-framework/silex rồi chạy
-```console
-php -S 0.0.0.0:8002 -t app/web
+php -S 0.0.0.0:8004 -t web
 ```
 
 ### Cấu hình Nginx
@@ -87,6 +82,51 @@ server {
     }
 }
 ```
+
+## Demo
+http://sso-php.icovn.me/hello.php
+
+
+# Python
+
+## Yêu cầu
+- Python 3.x
+- Redis server
+- Flask
+- Python redis client
+
+## Các bước thực hiện
+
+### Cài đặt pip
+```console
+curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+sudo python get-pip.py
+```
+
+### Cài đặt Flask
+```console
+pip install -U Flask
+```
+
+### Cài đặt Python redis client
+```console
+pip install redis
+```
+
+## Chạy ứng dụng
+
+### Trên linux
+```console
+FLASK_APP=hello.py flask run --host=0.0.0.0 --port=8005
+```
+
+### Trên Windows
+```console
+SET FLASK_APP=hello.py && flask run --host=0.0.0.0 --port=8005
+```
+
+## Demo
+http://sso-python.icovn.me/
 
 # NodeJS
 

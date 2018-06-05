@@ -7,6 +7,13 @@
         }
     ],
     "require": {
-        "league/oauth2-client": "^2.3"
+        "league/oauth2-client": "^2.3",
+        "monolog/monolog": "^1.23",
+        "predis/predis": "^1.1",
+        "vlucas/phpdotenv": "^2.4",
+        "php-di/php-di": "^5.4"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^5.4"
     }
 }
