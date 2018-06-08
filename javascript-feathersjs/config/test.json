@@ -1,3 +1,13 @@
 {
-  "nedb": "../test/data"
+  "nedb": "../test/data",
+  "authentication": {
+  	"icovn": {
+      "clientID": "acme",
+      "clientSecret": "acmesecret",
+      "authorizationURL": "http://sso.icovn.me/oauth/authorize",
+      "tokenURL": "http://sso.icovn.me/oauth/token",
+      "callbackURL": "http://localhost:8002/auth/icovn/callback",
+      "successRedirect": "http://localhost:8002/"
+    }
+  }
 }
