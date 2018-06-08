@@ -51,22 +51,22 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
         .authenticationManager(authenticationManager);
   }
 
-  @Bean
-  @Primary
-  public AuthorizationServerTokenServices tokenServices() {
-    DefaultTokenServices tokenServices = new DefaultTokenServices();
-    tokenServices.setTokenStore(tokenStore());
-    tokenServices.setTokenEnhancer(tokenEnhancer());
-    return tokenServices;
-  }
+//  @Bean
+//  @Primary
+//  public AuthorizationServerTokenServices tokenServices() {
+//    DefaultTokenServices tokenServices = new DefaultTokenServices();
+//    tokenServices.setTokenStore(tokenStore());
+//    tokenServices.setTokenEnhancer(tokenEnhancer());
+//    return tokenServices;
+//  }
 
   @Bean
   public TokenEnhancer tokenEnhancer() {
     return new CustomTokenEnhancer();
   }
 
-  @Bean
-  public TokenStore tokenStore() {
-    return new RedisTokenStore(redisConnectionFactory);
-  }
+//  @Bean
+//  public TokenStore tokenStore() {
+//    return new RedisTokenStore(redisConnectionFactory);
+//  }
 }

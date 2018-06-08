@@ -58,9 +58,11 @@ public class Application implements CommandLineRunner {
     long usersCount = userService.count();
     log.info("usersCount {}", usersCount);
     if(usersCount == 0){
-      MdlUser user = new MdlUser(1L, defaultUsername, passwordEncoder.encode(defaultPassword), true, "ADMIN");
-      log.info("(initUser) {}, {}, {}", defaultUsername, defaultPassword, user);
-      userService.save(user);
+      for(int i = 0; i <= 10; i++){
+        MdlUser user = new MdlUser((long)i, i + defaultUsername, passwordEncoder.encode(defaultPassword), true, "ADMIN");
+        log.info("(initUser) {}, {}, {}", i + defaultUsername, defaultPassword, user);
+        userService.save(user);
+      }
     }
   }
 }
