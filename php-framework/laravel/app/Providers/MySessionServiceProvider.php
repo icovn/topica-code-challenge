@@ -20,7 +20,8 @@ class MySessionServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Session::extend('redis', function ($app) {
+        //TODO: config redis session handler here
+        Session::extend('redis2', function ($app) {
             // Return implementation of SessionHandlerInterface...
             return new \App\Extensions\MyRedisSessionHandler;
         });
